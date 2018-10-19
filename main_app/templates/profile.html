@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <h3>{{ username }}'s Cats</h3>
+
+    {% for cat in cats %}
+
+    <a href="/{{cat.id}}">
+
+        <h4>{{ cat.name }}</h4>
+
+    {% if cat.age > 0 %}
+        <p>Age: {{ cat.age }}
+    {% endif %}
+    </a>
+
+    <hr/>
+
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CatCollectr</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <header><!-- <nav> -->
+      <a href="{% url 'profile' user.username %}" class="white">Howdy, {{ user.username }}!"</a>
+      <a href="{% url 'logout' %}" class="white">Logout</a>
+      {% else %}
+      <a href="{% url 'login' %}">Login</a>
+    </hedaer><!-- </nav> -->
+    {% endif %}
+        <h1>Cat Collectr &#128008;</h1>
+    <hr />
+
+        {% block content %}
+        {% endblock %}
+
+    <footer>
+        All Rights Reserved, CatCollectr 2017
+    </footer>
+    <script
+        src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'app.js' %}"></script>
+  </body>
+</html>

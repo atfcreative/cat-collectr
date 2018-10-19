@@ -1,0 +1,35 @@
+<!-- main_app/templates/index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  {% for cat in cats %}
+    <a href="/{{cat.id}}">
+      <p>Cat name: {{cat.name}}</p>
+    </a>
+    <a href="/user/{{cat.user.username}}">
+      <p>Adopdted by: {{cat.user.username}}</p>
+    </a>
+
+      {% if cat.age > 0 %}
+         <p>Age: {{cat.age}}</p>
+      {% else %}
+        <p>Age: Kitten</p>
+      {% endif %}
+
+    <a class="waves-light btn" data-id="{{cat.id}}">
+      Likes: {% if cat.likes > 0 %} {{cat.likes}} {% else %} None:( {% endif %})
+    </a>
+
+  <hr />
+  {% endfor %}
+
+    <!---Form Inclusion --->
+
+    <form action="post_url/" method="POST" >
+      <h4>Create Some Cats...</h4>
+      {% csrf_token %}
+      {{form.as_p}}
+      <input type="submit" value="submit" class="btn waves-effect waves-light" />
+    </form>
+
+{% endblock %}
